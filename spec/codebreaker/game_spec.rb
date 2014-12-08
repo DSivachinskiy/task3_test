@@ -22,7 +22,7 @@ module Codebreaker
 
     end
 
-    context "#game_process" do
+    context "#game_progress" do
       let(:game) { Game.new}
  
       before(:each) do
@@ -30,8 +30,7 @@ module Codebreaker
 	
       end
 	it "right number entered" do
-
-	  game.instance_variable_set(:@num, game.instance_variable_get(:@secret_code))
+	 game.instance_variable_set(:@num, game.instance_variable_get(:@secret_code))
 	  game.game_progress
 	 expect(game.instance_variable_get(:@msg)).to eq("Congratulations!")
 	end
@@ -75,18 +74,8 @@ module Codebreaker
 	end
 
     end
-    context "#score" do
-      	let(:game) { Game.new}
- 
-      	before(:each) do
-        game.start
-	
-	end
-	it "score works" do
-	  game.game_progress
-	game.score
-	 expect(game.instance_variable_get(:@scoremsg)).not_to eq("")
-	end
-    end
+
+   
+
   end
 end

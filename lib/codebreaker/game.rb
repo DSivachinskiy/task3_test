@@ -12,29 +12,37 @@ module Codebreaker
  
     def start
       @secret_code = "#{rand(1..6)}"+"#{rand(1..6)}"+"#{rand(1..6)}"+"#{rand(1..6)}"
-	#puts @secret_code
+	puts @secret_code
     end
 
     def score
+puts "Do you want to write your score? Enter 'yes' for write"
+wrscore = gets.chomp.to_s
+if wrscore == 'yes'
 	@scoremsg = "Your score: #{@pts} points! \n Please enter your name: \n"	
 	puts @scoremsg
-@name = gets.chomp.to_s if @name == ""
+	@name = gets.chomp.to_s if @name == ""
 	file = File.open('../../score/score', 'a')
 	file.write("\n"+@name+" "+"#{@pts}")
+end
     end
+
 
     def game_progress
 	puts "Enter four numbers between 1 and 6"	
 	  i = 0	
 	  j = 0
-	              
+	   ent = ""           
 	loop do
   
 	  answer = ""
 	  i += 1
 	  @pts -= 5
-	if @num == ""
-	  @num = gets.chomp.to_s
+	puts "Enter 'yes' to enter new number"
+	ent = gets.chomp.to_s
+	if ent == 'yes'
+	puts "Enter new number"
+	 @num = gets.chomp.to_s
 	end
 		
 	if @num.size == 4
@@ -75,13 +83,13 @@ module Codebreaker
 	end
 	
     end
-=begin
+
     def self.play_again 
 	loop do
 	a = Codebreaker::Game.new
 	a.start
 	a.game_progress
-#a.score
+a.score
 	puts "Enter 'yes' if you want to play again"
 	again = gets.chomp.to_s
 		if again == "yes"
@@ -91,9 +99,9 @@ module Codebreaker
 		end
 	end
     end
-=end
+
   end
 end
 
-#Codebreaker::Game.play_again
+Codebreaker::Game.play_again
 
